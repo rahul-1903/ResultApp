@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>
+      Check Your Own Result
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="resultForm" (ngSubmit)="onSubmit()">
+
+    <ion-item>
+      <ion-label position="floating">Roll No.</ion-label>
+      <ion-input type="text" formControlName="roll"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Department</ion-label>
+      <!-- <ion-input type="text" formControlName="dept"></ion-input> -->
+      <ion-select formControlName="dept">
+        <ion-select-option value="Cse">Computer Science and Engineering</ion-select-option>
+        <ion-select-option value="It">Information Technology</ion-select-option>
+        <ion-select-option value="Ce">Civil Engineering</ion-select-option>
+        <ion-select-option value="Me">Mechanical Engineering</ion-select-option>
+        <ion-select-option value="Bt">Biotechnology</ion-select-option>
+        <ion-select-option value="Ece">Electronics and Communication Engineering</ion-select-option>
+        <ion-select-option value="Aeie">Applied and Instrumentation Engineering</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Year</ion-label>
+      <ion-select formControlName="year">
+        <ion-select-option value="first">First</ion-select-option>
+        <ion-select-option value="second">Second</ion-select-option>
+        <ion-select-option value="third">Third</ion-select-option>
+        <ion-select-option value="forth">Forth</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!resultForm.valid">Search</ion-button>
+    
+  </form>
+
+  <div *ngIf="result">  
+    <ion-card>
+
+      <div *ngFor="let key of result">
+            <ion-item>
+              <ion-label>{{key[0]}}</ion-label>
+              <ion-label>{{key[1]}}</ion-label>
+            </ion-item>
+            <hr/>
+      </div>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="errMess">
+    <!-- <ion-item>{{errMess}}</ion-item> -->
+    <ion-card>
+      <ion-card-content>
+          <ion-card-title>Result not Found</ion-card-title>
+        <ion-card-subtitle>
+          Sorry for the inconvinience, Your result was not found
+        </ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

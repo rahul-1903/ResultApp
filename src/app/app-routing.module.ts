@@ -13,8 +13,14 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+    loadChildren: './list/list.module#ListPageModule',
+  },
+  { 
+    path: 'deptresult', 
+    loadChildren: './deptresult/deptresult.module#DeptresultPageModule'
+  },
+  { path: 'resultdetail', loadChildren: './resultdetail/resultdetail.module#ResultdetailPageModule' },
+  { path: 'individual', loadChildren: './individual/individual.module#IndividualPageModule' }
 ];
 
 @NgModule({

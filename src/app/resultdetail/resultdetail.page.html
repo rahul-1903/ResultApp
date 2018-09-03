@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="dark">
+   <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button></ion-back-button> -->
+    </ion-buttons>
+    
+    <ion-title>
+      Result Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngFor="let key of res">
+    <ion-item>
+      <ion-label>{{key[0]}}</ion-label>
+      <ion-label>{{key[1]}}</ion-label>
+    </ion-item>
+  </div>
+  
+</ion-content>

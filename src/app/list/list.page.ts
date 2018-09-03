@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -7,33 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
   private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
+  
+
+  public depts = [
+    'Computer Science And Engineering',
+    'Information Technology',
+    'Civil Engineering',
+    'Mechanical Engineering',
+    'Biotechnology',
+    'Electronics and Communication Engineering',
+    'AEIE'
   ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  public abbr = [ 
+    'Cse','It','Cv','Me','Bt','Ece','Aeie'
+  ]
+
+  year: string = 'first';
+
+  constructor(private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.year = this.route.snapshot.paramMap.get('year');
+    // console.log('user clicked in year ', this.year);
   }
   // add back when alpha.4 is out
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
+
+
+  
+  openDept(dept: string) {
+    // console.log('Opening ', this.year, ' year ', dept, ' department result');
+    this.router.navigate(['/deptresult', {yr: this.year, dp: this.abbr[this.depts.indexOf(dept)]}]);
+  }
+
 }
