@@ -48,9 +48,13 @@ export class ListPage implements OnInit {
     this.loadingCtrl.create({
       message: `Loading ${dept} Result`,
       duration: 2000
-    }).then((loading) => loading.present());
+    }).then((loading) => {
+      loading.present();
+      this.router.navigate(['/deptresult', {yr: this.year, dp: this.abbr[this.depts.indexOf(dept)]}]);
 
-    this.router.navigate(['/deptresult', {yr: this.year, dp: this.abbr[this.depts.indexOf(dept)]}]);
+    });
+
+    // this.router.navigate(['/deptresult', {yr: this.year, dp: this.abbr[this.depts.indexOf(dept)]}]);
   }
 
 }
