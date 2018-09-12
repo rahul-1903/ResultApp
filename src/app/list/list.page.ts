@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -26,7 +28,8 @@ export class ListPage implements OnInit {
   year: string = 'first';
 
   constructor(private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
@@ -42,6 +45,11 @@ export class ListPage implements OnInit {
   
   openDept(dept: string) {
     // console.log('Opening ', this.year, ' year ', dept, ' department result');
+    this.loadingCtrl.create({
+      message: `Loading ${dept} Result`,
+      duration: 2000
+    }).then((loading) => loading.present());
+
     this.router.navigate(['/deptresult', {yr: this.year, dp: this.abbr[this.depts.indexOf(dept)]}]);
   }
 

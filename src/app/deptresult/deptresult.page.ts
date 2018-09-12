@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -22,9 +22,10 @@ export class DeptresultPage implements OnInit {
   constructor(private modalCtrl: ModalController,
     private router: Router,
     private route: ActivatedRoute,
-  ) { }
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
+
     this.user.year = this.route.snapshot.paramMap.get('yr');
     this.user.dept = this.route.snapshot.paramMap.get('dp');
     // console.log('this.year = ', this.year, ' and this.dept = ', this.dept);
@@ -37,12 +38,20 @@ export class DeptresultPage implements OnInit {
 
   async openResult(item) {
 
-    const modal = await this.modalCtrl.create({
-      component: ResultdetailPage,
-      componentProps: { data: item },
+    this.loadingCtrl.create({
+      message: 'Fetching Details',
+      duration: 1000,
+    }).then((loading) => {
+      loading.present();
+      this.modalCtrl.create({
+        component: ResultdetailPage,
+        componentProps: { data: item },
+      }).then((modal) => modal.present());
+      
+      // return await modal.present();
     });
+
     
-    return await modal.present();
 
   }
 

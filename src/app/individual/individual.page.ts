@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { LoadingController } from '@ionic/angular';
+
 import { User } from '../shared/user';
 import { department } from '../shared/department';
 
@@ -17,8 +19,10 @@ export class IndividualPage implements OnInit {
   results: any;
   result: any = null;
   errMess: string = null;
+  loading;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private loadingCtrl: LoadingController) {
 
     this.resultForm = this.formBuilder.group({
       roll: ['', Validators.required],
@@ -35,8 +39,10 @@ export class IndividualPage implements OnInit {
     this.user.roll = this.resultForm.get('roll').value;
     this.user.dept = this.resultForm.get('dept').value;
     this.user.year = this.resultForm.get('year').value;
+    this.LoadingScreen();
 
-    this.extractData();
+    // this.extractData();
+    setTimeout(() => this.extractData(), 1000);
   
   }
 
@@ -48,8 +54,17 @@ export class IndividualPage implements OnInit {
     return s.toUpperCase();
   }
 
+  LoadingScreen() {
+    this.loading = this.loadingCtrl.create({
+      message: 'Loading Result',
+      duration: 1000
+    }).then((loading) => loading.present());
+
+  }
+
   extractData() {
     
+
     this.errMess = null;
     this.results = new department(this.user).departmentList();
     this.result = this.results.find(result => {

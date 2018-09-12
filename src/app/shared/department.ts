@@ -31,6 +31,7 @@ export class department {
 
     constructor(private user: any) {
     }
+    
     departmentList() {
         if (this.user.year == 'first') {
             switch(this.user.dept) {
