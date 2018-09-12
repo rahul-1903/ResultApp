@@ -9,12 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ResultdetailPage } from './resultdetail/resultdetail.page';
-import { IndividualPage } from './individual/individual.page';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResultdetailPage
+    ResultdetailPage,
   ],
   entryComponents: [
     ResultdetailPage

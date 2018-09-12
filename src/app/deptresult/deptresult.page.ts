@@ -17,7 +17,7 @@ export class DeptresultPage implements OnInit {
   dept: any = 'Cse';
   user = {dept: '', year: ''};
 
-  private results: any;
+  public results: any;
 
   constructor(private modalCtrl: ModalController,
     private router: Router,

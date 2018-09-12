@@ -10,6 +10,7 @@ export class HomePage {
 
   public year: string;
 
+
   constructor(private router: Router) {}
 
   openPage(yr: string) {

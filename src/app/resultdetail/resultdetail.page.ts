@@ -13,7 +13,7 @@ export class ResultdetailPage implements OnInit {
 
   private item: any;
 
-  private res = [];
+  public res = [];
 
   constructor(private navParams: NavParams,
     private modalCtrl: ModalController) { 
